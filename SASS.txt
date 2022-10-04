@@ -1,0 +1,127 @@
+####
+THE PRIMARY OBJECTIVE OF SASS (as per my perspective) IS TO STICK TO DRY(Do not repeat yourself) PRINCIPLE
+IF YOU ARE A BEGINNER I WOULD NOT ADVICE YOU TO LEARN (or even try to) THIS;
+###
+SASS  is a CSS pre-processor which allows us to manage code efficiently 
+Features of SASS:
+
+Variables: for reusable values such as colors, font-sizes, spacing, etc;
+
+Nesting: to nest selectors inside of one another, allowing us to write less code;
+
+Operators: for mathematical operations right inside of CSS;
+
+Partials and imports: to write CSS in different files and importing them all into one single file;
+
+Mixins: to write reusable pieces of CSS code;
+
+Functions: similar to mixins, with the difference that they produce a value that can than be used
+
+Control Directives: Loops and conditionals statements
+
+Extends: Allows different selectors to inherit common properties;
+
+SASS ha sbroadly two syntax preprocessors:
+1) SASS (Which is indentation sensitive and does not use brackets)
+2) SCSS (similar to CSS)
+
+To define a variable 
+$name:#f34utgo (for example a color name)
+and while using it n any selectors
+YOU CAN USE VARIABLES TO ASSIGN ANY properties
+
+.nav{
+    background-color: $name;
+}
+
+//Nesting
+
+for example                         
+<div>
+  <ul>
+    <li>
+
+to write it in SASS
+.div{
+    .ul{
+        .li{
+
+        }
+    }
+}
+
+you can also use pseudo classes in Nesting
+for example
+.div{
+    .ul{
+        .li{
+            &:first-child{
+
+            }
+
+        }
+    }
+}
+
+**pls note the & is important  (the symbol "&" replaces the parent element in the compiled CSS)
+ 
+&:hover{
+    background-color: darken($green-color(color variable), 50%(percentage darken than the given color))
+}
+
+Mixin: reusable code
+syntax
+@mixin name{
+    &::after{
+        proper.....
+    }
+     
+}
+
+nav{
+    @include nameofmixin;
+}
+
+we cab also pass an argument in mixin
+@mixin name(argument name){
+    prop:argument name;
+
+}
+
+nav{
+    @include name(pass argument);
+
+}
+example
+@mixin bluepage($color){
+    background-color:$color;
+
+}
+
+calling the mixin
+.selector{
+    @include bluepage($blue-color);
+}
+
+@function name($arg1,$arg2){
+    $return $arg1/$arg2;
+}
+calling the function
+
+.selector{
+    margin:name(arg1,arg2)*1px;(we are multiplying this to make the result convert to pixels)
+}
+##if we are calling single prop multiple times we can use extend
+
+%name{
+    prop1
+    prop2
+    .
+    .
+    .
+}
+
+.selector{
+    @extend %name;
+
+}
